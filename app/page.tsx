@@ -139,6 +139,30 @@ export default function Home() {
         </article>
       </section>
 
+      <section className="panel reels-panel">
+        <div className="panel-header">
+          <h2>Recommended Reels</h2>
+          <span className="hint-pill">Top 5 for this scenario</span>
+        </div>
+
+        <div className="reel-list">
+          {result.recommendations.map((reel, index) => (
+            <article className="reel-card" key={reel.id}>
+              <div className="reel-rank">#{index + 1}</div>
+              <div className="reel-content">
+                <h3>{reel.title}</h3>
+                <p className="reel-meta">{reel.category}</p>
+                <p className="reel-rationale">{reel.rationale}</p>
+              </div>
+              <div className="reel-score-wrap">
+                <p className="reel-score">{Math.round(reel.score * 100)}%</p>
+                <span className={`reel-tag ${reel.safetyTag === "Balanced" ? "safe" : "warn"}`}>{reel.safetyTag}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="panel model-note">
         <h2>Model Note</h2>
         <p>
